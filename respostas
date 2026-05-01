@@ -1,0 +1,34 @@
+ q1_loops.md
+//java
+int k = (j + 13) / 27;
+while (k <= 10) {
+    k = k + 1;
+    int i = 3 * k - 1;
+}
+// out: ...
+
+//py
+k = (j + 13) // 27
+while k <= 10:
+    k = k + 1
+    i = 3 * k - 1
+# out: ...
+
+//haskell
+loop k
+  | k > 10    = ()
+  | otherwise =
+      let k' = k + 1
+          i  = 3 * k' - 1
+      in loop k'
+
+main = loop ((j + 13) `div` 27)
+
+//swift
+var k = (j + 13) / 27
+
+while k <= 10 {
+    k = k + 1
+    let i = 3 * k - 1
+}
+// out: ...
