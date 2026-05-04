@@ -6,21 +6,25 @@ for (i = 0, j = 17; i < n; i++, j--) {
     sum += i * j + 3;
 }
 
-//javascript
-let i, j, n = 100;
-let sum = 0;
+//PHP
+<?php
+$n = 100;
+$sum = 0;
 
-for (i = 0, j = 17; i < n; i++, j--) {
-    sum += i * j + 3;
+for ($i = 0, $j = 17; $i < $n; $i++, $j--) {
+    $sum += $i * $j + 3;
 }
+?>
 
-//C++
-int n = 100;
-int sum = 0;
+//RUBY
+n = 100
+j = 17
+sum = 0
 
-for (int i = 0, j = 17; i < n; i++, j--) {
-    sum += i * j + 3;
-}
+(0...n).each do |i|
+  sum += i * j + 3
+  j -= 1
+end
 
 //GO
 package main
