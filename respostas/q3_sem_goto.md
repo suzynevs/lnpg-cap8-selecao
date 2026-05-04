@@ -37,20 +37,60 @@ while i < 3 and j <= 0:
         j = 3 - i
         i += 1
 
-//ERLANG
-loop(I, J) when I >= 3; J > 0 ->
-    J;
+//ASSEMBLY
+; j = -3
+MOV j, -3
 
-loop(I, J) ->
-    Val = J + 2,
-    J1 =
-        case Val of
-            3 -> J - 1;
-            2 -> J - 1;
-            0 -> J + 2;
-            _ -> 0
-        end,
-    case J1 > 0 of
-        true -> J1;
-        false -> loop(I + 1, 3 - I)
-    end.
+; i = 0
+MOV i, 0
+
+LOOP_START:
+    ; if (i >= 3 || j > 0) -> sair
+    CMP i, 3
+    JGE LOOP_END
+
+    CMP j, 0
+    JG LOOP_END
+
+    ; val = j + 2
+    MOV val, j
+    ADD val, 2
+
+    ; if (val == 2 || val == 3)
+    CMP val, 2
+    JE CASE_DEC
+    CMP val, 3
+    JE CASE_DEC
+
+    ; else if (val == 0)
+    CMP val, 0
+    JE CASE_ADD
+
+    ; default: j = 0
+    MOV j, 0
+    JMP AFTER_SWITCH
+
+CASE_DEC:
+    ; j--
+    SUB j, 1
+    JMP AFTER_SWITCH
+
+CASE_ADD:
+    ; j += 2
+    ADD j, 2
+
+AFTER_SWITCH:
+    ; if (j > 0) sair
+    CMP j, 0
+    JG LOOP_END
+
+    ; j = 3 - i
+    MOV j, 3
+    SUB j, i
+
+    ; i++
+    ADD i, 1
+
+    JMP LOOP_START
+
+LOOP_END:
