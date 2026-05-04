@@ -1,67 +1,56 @@
+//C
+int j = -3;
+int i = 0;
+
+while (i < 3 && j <= 0) {
+    int val = j + 2;
+
+    if (val == 3 || val == 2) {
+        j--;
+    } else if (val == 0) {
+        j += 2;
+    } else {
+        j = 0;
+    }
+
+    if (j <= 0) {
+        j = 3 - i;
+        i++;
+    }
+}
+
 //PYTHON
 j = -3
 i = 0
-continuar = True
 
-while i < 3 and continuar:
-    if j + 2 == 3 or j + 2 == 2:
+while i < 3 and j <= 0:
+    val = j + 2
+
+    if val in (2, 3):
         j -= 1
-    elif j + 2 == 0:
+    elif val == 0:
         j += 2
     else:
         j = 0
 
-    if j > 0:
-        continuar = False
-    else:
+    if j <= 0:
         j = 3 - i
+        i += 1
 
-    i += 1
+//ERLANG
+loop(I, J) when I >= 3; J > 0 ->
+    J;
 
-//JAVA
-int j = -3;
-boolean continuar = true;
-
-for (int i = 0; i < 3 && continuar; i++) {
-    switch (j + 2) {
-        case 3:
-        case 2:
-            j--;
-            break;
-        case 0:
-            j += 2;
-            break;
-        default:
-            j = 0;
-    }
-
-    if (j > 0) {
-        continuar = false;
-    } else {
-        j = 3 - i;
-    }
-}
-
-//JAVASCRIPT
-let j = -3;
-let continuar = true;
-
-for (let i = 0; i < 3 && continuar; i++) {
-    switch (j + 2) {
-        case 3:
-        case 2:
-            j--;
-            break;
-        case 0:
-            j += 2;
-            break;
-        default:
-            j = 0;
-    }
-
-    if (j > 0) {
-        continuar = false;
-    } else {
-        j = 3 - i;
-    }
-}
+loop(I, J) ->
+    Val = J + 2,
+    J1 =
+        case Val of
+            3 -> J - 1;
+            2 -> J - 1;
+            0 -> J + 2;
+            _ -> 0
+        end,
+    case J1 > 0 of
+        true -> J1;
+        false -> loop(I + 1, 3 - I)
+    end.
